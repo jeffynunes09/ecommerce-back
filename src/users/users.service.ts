@@ -3,6 +3,9 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/createUsersDto';
 import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
+import { UserResponseDto } from './dto/userResponseDto';
+import { plainToInstance } from 'class-transformer'; // Importando o método para transformar a entidade em DTO
 
 @Injectable()
 export class UsersService {
@@ -11,22 +14,43 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
     try {
-      // Cria uma nova instância da entidade User a partir do DTO
-      const newUser = this.userRepository.create(createUserDto);
+     
+      const hashPassword = await bcrypt.hash(createUserDto.password, 10);
 
-      // Persiste o novo usuário no banco de dados
+      
+      const newUser = this.userRepository.create({
+        ...createUserDto,
+        password: hashPassword,
+      });
+
+     
       await this.userRepository.save(newUser);
 
-      // Retorna o novo usuário após ser salvo
-      return newUser;
+      
+      const userResponseDto = plainToInstance(UserResponseDto, newUser, {
+        excludeExtraneousValues: true, 
+      });
+
+      return userResponseDto; 
     } catch (error) {
-      console.log(createUserDto)
+      console.log(createUserDto);
       console.log(`Erro ao criar usuário: ${error.message}`);
       throw new InternalServerErrorException(
         `Erro ao criar usuário: ${error.message}`,
       );
     }
   }
+
+  async findOne(email: string): Promise<User | undefined> {
+    try {
+      const user = await this.userRepository.findOne({ where: { email } });
+      console.log(user);  // Log para verificar se o usuário está sendo recuperado corretamente
+      return user;
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao buscar usuário');
+    }
+
+}
 }
