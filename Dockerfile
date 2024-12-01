@@ -1,6 +1,6 @@
 
 
-FROM node:16 AS build
+FROM node:22 AS build
 
 WORKDIR /the/workdir/path
 
