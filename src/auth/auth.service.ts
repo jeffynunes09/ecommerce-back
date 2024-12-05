@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { LoginDto } from './dto/loginDto';
-import * as bcrypt from 'bcryptjs';  // Importando bcrypt para verificar a senha
+import * as bcryptjs from 'bcryptjs';  // Importando bcrypt para verificar a senha
 
 @Injectable()
 export class AuthService {
@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     // Comparar a senha fornecida com a senha hashada do usuário
-    const isPasswordValid = await bcrypt.compare(loginDto.password, user.password);
+    const isPasswordValid = await bcryptjs.compare(loginDto.password, user.password);
     
     // Se a senha não for válida, lançar uma exceção
     if (!isPasswordValid) {

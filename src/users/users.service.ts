@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/createUsersDto';
 import { InjectRepository } from '@nestjs/typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 import { UserResponseDto } from './dto/userResponseDto';
 import { plainToInstance } from 'class-transformer'; // Importando o método para transformar a entidade em DTO
 import { UpdatedUserDto } from './dto/updatedUserDto';
@@ -19,7 +19,7 @@ export class UsersService {
   async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
     try {
 
-      const hashPassword = await bcrypt.hash(createUserDto.password, 10);
+      const hashPassword = await bcryptjs.hash(createUserDto.password, 10);
 
 
       const newUser = this.userRepository.create({
