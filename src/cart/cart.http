@@ -1,0 +1,11 @@
+
+
+POST http://localhost:3000/cart
+Content-Type: application/json
+
+
+{
+     "userId":"40ed281e-167d-4940-8a59-115ad4280835",
+
+    "items":[] 
+}

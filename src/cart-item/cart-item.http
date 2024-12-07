@@ -1,0 +1,11 @@
+
+Post  http://localhost:3000/cart-item
+Content-Type: application/json
+
+{
+    "cartId":"2db35385-6a18-4f7a-a2af-4ffec39f0b11",
+
+    "productId":"28b7a6e2-a39b-487c-a669-05fd707f2b31",
+
+    "quantity":2
+}

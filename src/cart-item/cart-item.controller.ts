@@ -8,8 +8,14 @@ export class CartItemController {
   constructor(private readonly cartItemService: CartItemService) {}
 
   @Post()
-  create(@Body() createCartItemDto: CreateCartItemDto) {
-    return this.cartItemService.create(createCartItemDto);
+  async create(@Body() createCartItemDto: CreateCartItemDto) {
+    try {
+      const cartItem = await this.cartItemService.create(createCartItemDto);
+      return cartItem
+    } catch (error) {
+      console.log(error.message)
+    }
+    return 
   }
 
   @Get()
