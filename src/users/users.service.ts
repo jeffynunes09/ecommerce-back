@@ -22,7 +22,7 @@ export class UsersService {
       const hashPassword = await bcryptjs.hash(createUserDto.password, 10);
 
 
-      const newUser = this.userRepository.create({
+      const newUser =   this.userRepository.create({
         ...createUserDto,
         password: hashPassword,
       });
@@ -37,7 +37,6 @@ export class UsersService {
 
       return userResponseDto;
     } catch (error) {
-      console.log(createUserDto);
       console.log(`Erro ao criar usuário: ${error.message}`);
       throw new InternalServerErrorException(
         `Erro ao criar usuário: ${error.message}`,
@@ -51,7 +50,8 @@ export class UsersService {
 
       return user;
     } catch (error) {
-      throw new InternalServerErrorException('Erro ao buscar usuário');
+      console.log(`Erro ao procurar usuário : ${error.message}`)
+      throw new InternalServerErrorException(`Erro ao buscar usuário : ${error.message}`);
     }
 
   }
@@ -74,17 +74,22 @@ export class UsersService {
 
   async findById(id: UUID) : Promise<User> {
     
-    
-      const user = await this.userRepository.findOne({
-        where: { id }
-      })
-      if(!user){
-       
-        throw new NotFoundException(`Usuário : ${user.name} não encontrado !`)
+   try {
+     
+    const user = await this.userRepository.findOne({
+      where: { id }
+    })
+    if(!user){
+     
+      throw new NotFoundException(`Usuário : ${user.name} não encontrado !`)
 
-      }
-      return user
-    
+    }
+    return user
+  
+   } catch (error) {
+    console.log(`Erro ao procurar usuários : ${error.message}`)
+      throw new InternalServerErrorException(`Erro ao procurar usuários : ${error.message}`)
+   }
       
     }
 
