@@ -7,8 +7,8 @@ import { CartItem } from "./cartItem.entity";
 @Entity()
 export class Cart {
 
-    @PrimaryGeneratedColumn()
-    id: UUID;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @ManyToOne(() =>  User, user => user.carts)
     @JoinColumn()

@@ -4,8 +4,8 @@ import { Cart } from "./cart.entity";
 
 @Entity()
 export class CartItem {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @ManyToOne(() => Cart, cart => cart.items)
   @JoinColumn()
@@ -16,6 +16,6 @@ export class CartItem {
   product: Product;
 
   @Column()
-  quantity: number;  // Quantidade do produto no carrinho
+  quantity: number; 
 
 }

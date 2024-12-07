@@ -1,0 +1,13 @@
+
+
+
+
+POST http://localhost:3000/order/create 
+Content-Type: application/json
+
+{
+    "totalPrice": 1230,
+    "status": "in progress",
+    "items": [],
+    "createdAt": "2024-12-07"
+}

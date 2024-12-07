@@ -7,6 +7,7 @@ import { CartModule } from './cart/cart.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
+import { OrderItemModule } from './order/orderItem.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { ConfigModule } from '@nestjs/config';
     UsersModule,
     CartModule,
     AuthModule,
+    OrderItemModule
   ],
 })
 export class AppModule {}
