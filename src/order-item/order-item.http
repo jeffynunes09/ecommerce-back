@@ -1,0 +1,12 @@
+
+
+POST http://localhost:3000/order-item
+Content-Type: application/json
+
+
+{
+    "orderId": "ad760fa7-7ae1-4e77-a1c7-2b9720473ef8",
+  "productId": "f7ea240d-2822-4073-abb8-9cfb0cbf5b08",
+  "quantity": 2,
+  "price": 150.50
+}

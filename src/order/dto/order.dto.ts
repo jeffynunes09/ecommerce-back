@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsNumber } from 'class-validator';
-import { OrderItem } from '../entities/orderItem.entity';
+import { OrderItem } from 'src/order-item/entities/order-item.entity';
+
 
 export class OrderDto {
   @IsNotEmpty()

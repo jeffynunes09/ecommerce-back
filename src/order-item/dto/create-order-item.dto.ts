@@ -3,18 +3,18 @@ import { IsNotEmpty, IsNumber, IsUUID, Min } from 'class-validator';
 export class OrderItemDto {
   @IsNotEmpty()
   @IsUUID()
-  orderId: string; // ID do pedido relacionado
+  orderId: string; 
 
   @IsNotEmpty()
   @IsUUID()
-  productId: string; // ID do produto relacionado
+  productId: string;
 
   @IsNotEmpty()
   @IsNumber()
   @Min(1)
-  quantity: number; // Quantidade do produto
+  quantity: number; 
 
   @IsNotEmpty()
   @IsNumber()
-  price: number; // Preço do produto
+  price: number; 
 }

@@ -1,5 +1,5 @@
 import { IsNumber, IsString } from "class-validator";
-import { OrderItem } from "src/order/entities/orderItem.entity";
+import { OrderItem } from "src/order-item/entities/order-item.entity";
 
 export class ProductDto {
 

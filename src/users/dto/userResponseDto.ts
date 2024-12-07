@@ -6,7 +6,7 @@ import { Cart } from 'src/cart/entities/cart.entity';
 export class UserResponseDto {
   
   @Expose()  // Exclui apenas os campos que você quer expor
-  id: UUID;
+  id: string;
 
   @Expose()
   name: string;

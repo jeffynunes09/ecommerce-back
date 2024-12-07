@@ -1,5 +1,5 @@
-import { UUID } from "crypto";
-import { OrderItem } from "src/order/entities/orderItem.entity";
+
+import { OrderItem } from "src/order-item/entities/order-item.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
