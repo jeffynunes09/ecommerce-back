@@ -1,0 +1,14 @@
+
+
+
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+
+{  
+    "name":"Jefferson",
+    "email":"123@gmaill.com",
+    "password":"1234"
+     
+}

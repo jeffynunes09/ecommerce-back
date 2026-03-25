@@ -1,14 +1,14 @@
-import { UUID } from "crypto";
+
+import { CartItem } from "src/cart-item/entities/cart-item.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { CartItem } from "./cartItem.entity";
 
 
 @Entity()
 export class Cart {
 
-    @PrimaryGeneratedColumn()
-    id: UUID;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @ManyToOne(() =>  User, user => user.carts)
     @JoinColumn()

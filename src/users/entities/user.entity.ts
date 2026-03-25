@@ -11,7 +11,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeo
 export class User {
 
     @PrimaryGeneratedColumn("uuid")
-    id: UUID;
+    id: string;
 
     @Column()
     name:string;

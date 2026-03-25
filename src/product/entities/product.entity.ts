@@ -1,5 +1,5 @@
-import { UUID } from "crypto";
-import { OrderItem } from "src/order/entities/orderItem.entity";
+
+import { OrderItem } from "src/order-item/entities/order-item.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
@@ -9,8 +9,8 @@ export class Product {
 
 
 
-    @PrimaryGeneratedColumn()
-    id: UUID;
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     name: string;
@@ -24,7 +24,6 @@ export class Product {
     @Column("decimal", {nullable:true})
     discount: number
 
-    @ManyToMany(() => OrderItem , orderItem => orderItem.product)
     
     @ManyToMany(() => OrderItem, orderItem => orderItem.product)
     orderItems: OrderItem[];
